@@ -1,0 +1,41 @@
+.emptyPage {
+  margin: 0 auto;
+  height: 100vh;
+  max-width: 290px;
+  transform: translateY(15%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  img {
+    align-self: center;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 24px;
+    color: #000;
+  }
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #9d9d9d
+  }
+
+  button {
+    p {
+      color: #fff;
+    }
+  }
+}
+
+.titlePage {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.arrowBack {
+  cursor: pointer;
+}

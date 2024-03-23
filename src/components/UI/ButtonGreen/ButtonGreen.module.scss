@@ -1,0 +1,46 @@
+button {
+  width: 100%;
+  align-self: center;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #9DD458;
+  border-radius: 18px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  transition: background 0.1s ease-out;
+
+  p {
+    position: relative;
+  }
+
+  .btnArrowRight {
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: right 0.2s ease-out;
+  }
+  .btnArrowLeft {
+    position: absolute;
+    left: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: left 0.2s ease-out;
+  }
+  &:hover {
+    background: lighten(#9DD458, 10%);
+    .btnArrowRight {
+      right: -45px;
+    }
+    .btnArrowLeft {
+      left: -45px;
+    }
+  }
+  &:active {
+    background: darken(#9DD458, 10%);
+  }
+}

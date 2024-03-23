@@ -1,0 +1,38 @@
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #F3F3F3;
+  border-radius: 10px;
+  width: 250px;
+  height: 45px;
+  padding: 13px;
+  gap: 10px;
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-left: 40px;
+    display: inline-block;
+    border: 0;
+    background-color: transparent;
+    font: inherit;
+    outline: none;
+
+    &::placeholder {
+      font-weight: 400;
+      color: #C4C4C4;
+      font-size: 14px;
+    }
+  }
+}
+.delete{
+  position: relative;
+  left: 172px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+}
