@@ -1,18 +1,23 @@
 import s from './Search.module.scss'
+
 import SearchIcon from "../../_icons/search/SearchIcon";
 import CartItemClose from "../../_icons/search/CartItemClose";
-const Search = ({searchValue, setSearchValue}) => {
-    const handleSearchValue = (e) => {
-        setSearchValue(e.target.value)
-    }
-    const handleDeleteInput = () => {
-        setSearchValue('')
-    }
+
+import {useContext} from "react";
+import AppContext from "../../context";
+
+const Search = () => {
+    const {searchValue, setSearchValue} = useContext(AppContext)
+
     return (
         <div className={s.search}>
             <SearchIcon/>
-            <input type='text' placeholder='Поиск...' onChange={handleSearchValue} value={searchValue}/>
-            {searchValue && <CartItemClose onClick={handleDeleteInput} className={s.delete}/>}
+            <input
+                type='text'
+                placeholder='Поиск...'
+                onChange={(e) => setSearchValue(e.target.value)}
+                value={searchValue}/>
+            {searchValue && <CartItemClose onClick={() => setSearchValue('')} className={s.delete}/>}
         </div>
     );
 };

@@ -7,8 +7,11 @@ import ButtonGreen from "../../components/UI/ButtonGreen/ButtonGreen";
 import s from './FavoritesPage.module.scss'
 import {Link} from "react-router-dom";
 import FavorArrowBack from "../../_icons/favorArrowBack/FavorArrowBack";
+import {useContext} from "react";
+import AppContext from "../../context";
 
-const FavoritesPage = ({dataFavorites = [], addToCart, addToFavorites}) => {
+const FavoritesPage = () => {
+    const {dataFavorites} = useContext(AppContext)
     return (
         <Content>
             <ContentTitle className={s.titlePage}>
@@ -22,15 +25,7 @@ const FavoritesPage = ({dataFavorites = [], addToCart, addToFavorites}) => {
                     {dataFavorites.map((item)=> (
                         <Card
                             key={item.id}
-                            id={item.id}
-                            anchor={item.anchor}
-                            isFavor={item.isFavoriteState}
-                            isCart={item.isCart}
-                            name={item.name}
-                            price={item.price}
-                            imgUrl={item.imgUrl}
-                            addToCart={addToCart}
-                            addToFavorites={addToFavorites}
+                            {...item}
                         />
                     ))}
                 </CardList> :

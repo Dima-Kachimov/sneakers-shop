@@ -1,25 +1,23 @@
 import s from './card.module.scss'
+
 import Plus from "../../_icons/card/Plus";
 import PlusActive from "../../_icons/card/PlusActive";
 import FavoritesCard from "../../_icons/card/FavoritesCard";
 import FavoritesCardActive from "../../_icons/card/FavoritesCardActive";
-import React, {useState} from "react";
 import CartItemClose from "../../_icons/cart/CartItemClose";
+
+import {useContext} from "react";
 import ContentLoader from "react-content-loader"
+import AppContext from "../../context";
 
 
-const Card = ({isFavor, isCart, name, price, imgUrl, addToCart, addToFavorites, id, anchor, isViewCart, isLoading, getIdItemCart}) => {
-    const [isCartState, setIsCartState] = useState(isCart)
-    const [isFavoriteState, setIsFavoriteState] = useState(isFavor)
+const Card = ({name, price, imgUrl, id, anchor, isViewCart}) => {
+    const {hasCartItems, hasFavoriteItems, addToCart, addToFavorites, isLoading} = useContext(AppContext)
 
-    const handleIsSetFavorite = () => {
-        addToFavorites({name, price, imgUrl, isFavoriteState: !isFavoriteState, anchor, id})
-        setIsFavoriteState(!isFavoriteState)
-    }
-    const handleIsSetCart = () => {
-        addToCart({name, price, imgUrl, anchor, isCartState: !isCartState})
-        setIsCartState(!isCartState)
-    }
+
+    const handleIsSetFavorite = () => addToFavorites({name, price, imgUrl, anchor, id})
+    const handleIsSetCart = () => addToCart({name, price, imgUrl, anchor})
+
 
 
     if(isViewCart) {
@@ -30,10 +28,7 @@ const Card = ({isFavor, isCart, name, price, imgUrl, addToCart, addToFavorites, 
                     <h3>{name}</h3>
                     <strong>{price} руб.</strong>
                 </div>
-                <CartItemClose className={s.cartClose} onClick={() => {
-                    handleIsSetCart()
-                    getIdItemCart(setIsCartState)
-                }}/>
+                <CartItemClose className={s.cartClose} onClick={handleIsSetCart}/>
             </div>
         )
     }
@@ -61,7 +56,7 @@ const Card = ({isFavor, isCart, name, price, imgUrl, addToCart, addToFavorites, 
 
     return (
         <div className={s.card}>
-            {isFavoriteState
+            {hasFavoriteItems(anchor)
                 ? <FavoritesCardActive className={s.favor} onClick={handleIsSetFavorite}/>
                 : <FavoritesCard className={s.favor} onClick={handleIsSetFavorite}/>}
             <img width={133} height={112} src={imgUrl} alt="sneakers"/>
@@ -71,7 +66,7 @@ const Card = ({isFavor, isCart, name, price, imgUrl, addToCart, addToFavorites, 
                     <span>Цена:</span>
                     <strong>{price} руб.</strong>
                 </div>
-                {isCartState
+                {hasCartItems(anchor)
                     ? <PlusActive onClick={() => handleIsSetCart()}/>
                     : <Plus onClick={() => handleIsSetCart()}/>}
             </div>

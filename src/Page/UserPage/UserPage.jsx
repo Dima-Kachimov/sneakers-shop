@@ -8,6 +8,7 @@ import ContentTitle from "../../components/ContentTitle/ContentTitle";
 import H1 from "../../components/_typography/H1/H1";
 
 const UserPage = () => {
+
     return (
         <Content>
             <ContentTitle className={s.titlePage}>

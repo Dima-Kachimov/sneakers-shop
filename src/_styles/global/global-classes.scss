@@ -1,3 +1,4 @@
+
 body {
     background-color: var(--bg-color);
     font-family: 'Inter', sans-serif;
@@ -5,9 +6,9 @@ body {
 }
 .app {
     max-width: var(--width-app);
-    margin: 85px auto;
+    margin: 0 auto;
     overflow: hidden;
-    padding: 0 15px;
+    padding: 85px 15px 85px;
 }
 .container {
     background-color: var(--bg-color-container);
@@ -16,4 +17,5 @@ body {
 }
 .hidden {
     overflow: hidden;
+    padding-right: 15px;
 }

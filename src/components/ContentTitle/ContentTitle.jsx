@@ -1,10 +1,3 @@
 import s from './content_title.module.scss'
-const ContentTitle = ({children, className}) => {
-    return (
-        <div className={`${s.ContentTitle}, ${className}`}>
-            {children}
-        </div>
-    );
-};
-
+const ContentTitle = ({children, className}) => <div className={`${s.ContentTitle}, ${className}`}>{children}</div>
 export default ContentTitle;

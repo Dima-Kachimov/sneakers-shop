@@ -1,17 +1,16 @@
+import s from './header.module.scss'
+
 import Logo from '../../_icons/header/Logo'
 import Basket from '../../_icons/header/Basket'
 import Favorite from '../../_icons/header/Favorite'
 import User from '../../_icons/header/User'
-import s from './header.module.scss'
+
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import AppContext from "../../context";
 
-const liItem = [
-    {id: 1, icon: <Basket/>, title: '1205 руб.'},
-    {id: 2, icon: <Favorite/>, title: 'Закладки',},
-    {id: 3, icon: <User/>, title: 'Профиль'}
-]
-
-const Header = ({handleIsDrawerOpen}) => {
+const Header = () => {
+    const {handleIsDrawerOpen} = useContext(AppContext)
     return (
         <>
             <header>
@@ -25,14 +24,18 @@ const Header = ({handleIsDrawerOpen}) => {
                     </Link>
                 </div>
                 <ul className={s.nav}>
-                    {liItem.map((item) => (
-                        <li key={item.id}>
-                            {item.icon}
-                            {item.id === 1
-                                ? <span className={s.li_strong} onClick={handleIsDrawerOpen}>{item.title}</span>
-                                : <Link to={item.id === 2 ? 'favorites' : 'user'}><span>{item.title}</span></Link>}
-                        </li>
-                    ))}
+                    <li>
+                        <Basket/>
+                        <span className={s.li_strong} onClick={handleIsDrawerOpen}>1205 руб.</span>
+                    </li>
+                    <li>
+                        <Favorite/>
+                        <Link to={'favorites'}><span>Закладки</span></Link>
+                    </li>
+                    <li>
+                        <User/>
+                        <Link to={'user'}><span>Профиль</span></Link>
+                    </li>
                 </ul>
 
             </header>

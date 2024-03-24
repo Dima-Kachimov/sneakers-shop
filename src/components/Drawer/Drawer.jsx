@@ -1,8 +1,24 @@
 import s from './draver.module.scss'
+
 import ButtonGreen from "../UI/ButtonGreen/ButtonGreen";
 import CartItemClose from "../../_icons/cart/CartItemClose";
 import Card from "../Card/Card";
-const Drawer = ({handleIsDrawerOpen, dataSneakersCart = [], addToCart, getIdItemCart}) => {
+
+import {useContext} from "react";
+import AppContext from "../../context";
+
+const Drawer = () => {
+    const {dataSneakersCart, handleIsDrawerOpen} = useContext(AppContext)
+
+    const renderItemsCart = () => {
+        return dataSneakersCart.map(item => (
+            <Card
+                key={item.id}
+                {...item}
+                isViewCart={true}
+            />))
+    }
+
     return (
         <div className={s.overlay} onClick={handleIsDrawerOpen}>
             <div className={s.drawer} onClick={(e) => e.stopPropagation()}>
@@ -10,25 +26,10 @@ const Drawer = ({handleIsDrawerOpen, dataSneakersCart = [], addToCart, getIdItem
                     <h2>Корзина</h2>
                     <CartItemClose key={1} onClick={handleIsDrawerOpen}/>
                 </div>
-                {
-                    dataSneakersCart.length > 0
+                {dataSneakersCart.length > 0
                         ? <>
                             <div className={s.cardList}>
-                                {
-                                    dataSneakersCart.map(item => (
-                                    <Card
-                                        key={item.id}
-                                        id={item.id}
-                                        anchor={item.anchor}
-                                        isCart={item.isCartState}
-                                        name={item.name}
-                                        price={item.price}
-                                        imgUrl={item.imgUrl}
-                                        addToCart={addToCart}
-                                        isViewCart={true}
-                                        getIdItemCart={getIdItemCart}
-                                    />))
-                                }
+                                {renderItemsCart()}
                             </div>
                             <div className={s.priceBlock}>
                                 <div className={s.total}>
