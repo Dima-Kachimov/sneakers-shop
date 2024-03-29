@@ -11,7 +11,7 @@ import ContentLoader from "react-content-loader"
 import AppContext from "../../context";
 
 
-const Card = ({name, price, imgUrl, id, anchor, isViewCart}) => {
+const Card = ({name, price, imgUrl, id, anchor, isViewCart, hasOrder = true}) => {
     const {hasCartItems, hasFavoriteItems, addToCart, addToFavorites, isLoading} = useContext(AppContext)
 
 
@@ -64,11 +64,11 @@ const Card = ({name, price, imgUrl, id, anchor, isViewCart}) => {
             <div className={s.priceBlock}>
                 <div className={s.price}>
                     <span>Цена:</span>
-                    <strong>{price} руб.</strong>
+                    <strong>{price} $</strong>
                 </div>
                 {hasCartItems(anchor)
                     ? <PlusActive onClick={() => handleIsSetCart()}/>
-                    : <Plus onClick={() => handleIsSetCart()}/>}
+                    : hasOrder &&  <Plus onClick={() => handleIsSetCart()}/>}
             </div>
         </div>
     );

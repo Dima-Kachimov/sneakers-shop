@@ -8,9 +8,12 @@ import User from '../../_icons/header/User'
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import AppContext from "../../context";
+import { useCart } from '../../hooks/useCart'
 
 const Header = () => {
     const {handleIsDrawerOpen} = useContext(AppContext)
+    const [totalPrice] = useCart()
+
     return (
         <>
             <header>
@@ -26,7 +29,7 @@ const Header = () => {
                 <ul className={s.nav}>
                     <li>
                         <Basket/>
-                        <span className={s.li_strong} onClick={handleIsDrawerOpen}>1205 руб.</span>
+                        <span className={s.li_strong} onClick={handleIsDrawerOpen}>{totalPrice} $</span>
                     </li>
                     <li>
                         <Favorite/>

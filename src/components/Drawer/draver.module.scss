@@ -8,26 +8,40 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  visibility: hidden;
+  opacity: 0;
+
+}
+.visible {
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  visibility: visible;
+  opacity: 1;
 }
 
 .drawer {
   position: fixed;
-  right: 0px;
+  right: 0;
   top: 0;
   width: 385px;
   height: 100vh;
   background-color: #fff;
   padding: 30px;
 
+  transform: translateX(100%);
+
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transition: transform 0.3s ease-in-out;
 
   .cartTitle {
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+
   }
 
   h2 {
@@ -35,6 +49,11 @@
     font-size: 24px;
   }
 }
+
+.visibleDrawer {
+  transform: translateX(0%);
+}
+
 
 .cardList {
   align-self: center;

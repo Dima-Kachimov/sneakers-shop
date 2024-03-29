@@ -29,14 +29,15 @@ const FavoritesPage = () => {
                         />
                     ))}
                 </CardList> :
-                <Link to={'/'}>
                     <div className={s.emptyPage}>
                         <img width={70} height={70} src="./images/Favorites/favorSmile.png" alt="грустно"/>
                         <h4>Закладок нет :(</h4>
                         <p>Вы ничего не добавляли в закладки</p>
-                        <ButtonGreen isBack={true}>Вернуться назад</ButtonGreen>
+                        <Link to={'/'}>
+                            <ButtonGreen isBack={true}>Вернуться назад</ButtonGreen>
+                        </Link>
                     </div>
-                </Link>
+
             }
         </Content>
     );
